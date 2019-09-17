@@ -1,0 +1,15 @@
+#Ignore data files
+*.pkl
+*.jp2
+*.npy
+*.cpg
+*.dbf
+*.prj
+*.shp
+*.shx
+
+#Ignore folder named 'other'
+other/
+.ipynb_checkpoints/
+submissions/
+.idea/
