@@ -127,10 +127,8 @@ For the pixel-based ensemble models, an additional module `PixelToObject` is cal
 
 Three distinct techniques were tested:
 
-1. **Object-based ensemble method :** This method makes use of statistical and location features calculated for each field using an ensemble of linear (LogisticRegression), nearest-neighbours (KNN) and tree-based methods (RandomForest, ExtraTrees, XGBoost). See `run_object_ensemble.ipynb`.<br>
-  <br>
-2. **Pixel-based ensemble method :** This method makes use of individual pixel features (spectral band intensities, vegetative index and time difference values) to train an ensemble of linear (LogisticRegression) and tree-based methods (RandomForest, ExtraTrees, XGBoost). See `run_pixel_ensemble.ipynb`.<br>
-  <br>
+1. **Object-based ensemble method :** This method makes use of statistical and location features calculated for each field using an ensemble of linear (LogisticRegression), nearest-neighbours (KNN) and tree-based methods (RandomForest, ExtraTrees, XGBoost). See `run_object_ensemble.ipynb`.
+2. **Pixel-based ensemble method :** This method makes use of individual pixel features (spectral band intensities, vegetative index and time difference values) to train an ensemble of linear (LogisticRegression) and tree-based methods (RandomForest, ExtraTrees, XGBoost). See `run_pixel_ensemble.ipynb`.
 3. **CNN method :** This method trains convolutional neural networks using individual pixel feature values (1D CNN) or resized field images (2D CNN). See `run_CNN.ipynb`.<br> 
 
 ---
