@@ -123,7 +123,7 @@ A custom ensembling module, `ModelEnsemble`, is created that allows the predicti
 
 For the pixel-based ensemble models, an additional module `PixelToObject` is called on the fitted `ModelEnsemble` instance. This transforms the outputs from individual pixel predictions to whole field predictions by taking the mean pixel prediction for each object. (Note: An attempt was made to heuristically improve this method of aggregating individual pixel predictions, both by boosting the class probability that is most confidently 'voted-for' as well as applying Laplace Smoothing to those class probability distributions for fields where no confident prediction exists.)
 
-#### Models
+#### Models
 
 Three distinct techniques were tested:
 
