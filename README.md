@@ -1,4 +1,4 @@
-## Zindi FarmPin Crop Detection Challenge
+### Zindi FarmPin Crop Detection Challenge 2019
 
 ---
 
@@ -32,17 +32,20 @@ The performance of the classifier in making these predictions is scored using a 
 
 ```
 root
-|-- raw_data
+
+|-- raw_data                                 (UNPOPULATED)
         |-- sat_img                          (Sentinel-2 data part 1)
         |-- sat_img_2                        (Sentinel-2 data part 2)
         |-- test_new                         (train data shapefiles, reprojected into new CRS)
         |-- train_new                        (test data shapefiles, reprojected into new CRS)
-|-- extracted_data
+        
+|-- extracted_data                           (UNPOPULATED)
         |-- train                            (train fields extracted from each satellite image band and date)
         |-- test                             (test fields extracted from each satellite image band and date)
         |-- train_data.pkl                   (train field images as a single dataframe)
         |-- test_data.pkl                    (test field images as a single dataframe)
-|-- processed_data
+        
+|-- processed_data                           (UNPOPULATED)
         |-- train                            (same contents as test below)
         |-- test               
             |-- expanded_pixels.pkl          (generated features: field images converted to individual pixels)
@@ -51,11 +54,13 @@ root
             |-- stat_features.pkl            (generated features: statistical summary features for each field)
             |-- timediff_features.pkl        (generated features: seasonal differences in intensity)
             |-- vegindex_features.pkl        (generated features: calculated vegetative indices)
+            
 |-- modules
         |-- generate_features.py             (helper classes and functions to create features)
         |-- process_data.py                  (helper classes and functions to pre-process data)
         |-- run_models.py                    (helper classes and functions to run models and ensembles)
         |-- metaclassifiers.py               (custom estimators for ensembling models)
+        
 |-- extract_fields.py                        (extracts fields from satellite images using shapefiles)
 |-- generate_features.ipynb                  (executes feature generator modules)
 |-- explore_data.ipynb                       (very basic visualisation of data and features)
@@ -94,17 +99,17 @@ A number of features are generated using the custom transformer classes in the `
 
 * **Location :** the latitude and longitude of each field in the training set is used to fit a KMeans clustering algorithm which divides the location of the fields into 'zones'. This fitted model then acts as a transformer to label each field with a zone number -- with the number of clusters specifying the number of zones (features generated for between 10-2000 zones in this example). <br>
   <br>
-2. **Vegetative Index :** certain transformations of spectral bands may be used to accentuate the spectral response of plants such that the characteristics of the vegetation may be measured, the background soil signal, as well as atmospheric and topographic effects may be discounted. A selection of these are calculated for each field.<br>
+* **Vegetative Index :** certain transformations of spectral bands may be used to accentuate the spectral response of plants such that the characteristics of the vegetation may be measured, the background soil signal, as well as atmospheric and topographic effects may be discounted. A selection of these are calculated for each field.<br>
   <br>
-3. **Time Difference :** the change in the appearance of a field over time is likely to be closely related to the crop type, as a result of seeding and growth cycles throughout the year. Intensity difference features are calculated between the seasons of the year in an attempt to highlight this time-series pattern in the absence of several years of data.<br>
+* **Time Difference :** the change in the appearance of a field over time is likely to be closely related to the crop type, as a result of seeding and growth cycles throughout the year. Intensity difference features are calculated between the seasons of the year in an attempt to highlight this time-series pattern in the absence of several years of data.<br>
   <br>
-4. **Statistical Features :** the mean, std, max and min pixel intensities are calculated for each image of each field.<br>
+* **Statistical Features :** the mean, std, max and min pixel intensities are calculated for each image of each field.<br>
   <br>
-5. **Mean Difference Features :** the deviation of a field from the 'typical' image for each crop may be a useful indicator of their similarity. The mean pixel value for each crop type in the training set is calculated, the difference between each pixel in an image and this mean is then determined for each field.<br>
+* **Mean Difference Features :** the deviation of a field from the 'typical' image for each crop may be a useful indicator of their similarity. The mean pixel value for each crop type in the training set is calculated, the difference between each pixel in an image and this mean is then determined for each field.<br>
   <br>
-6. **Resized Images :** each field is a different size and shape, with the image represented by a numpy array of pixel intensities padded by zeros. In order to standardise these images for NN training, they are either downsampled or upsampled using interpolation to common dimensions (32 x 32 in this example).<br>
+* **Resized Images :** each field is a different size and shape, with the image represented by a numpy array of pixel intensities padded by zeros. In order to standardise these images for NN training, they are either downsampled or upsampled using interpolation to common dimensions (32 x 32 in this example).<br>
   <br>
-7. **Transform To Pixels :** for training the pixel-based models, the dataset is transformed from a set of image arrays to a set of pixel values.<br>
+* **Transform To Pixels :** for training the pixel-based models, the dataset is transformed from a set of image arrays to a set of pixel values.<br>
 
 #### Helper Classes and Functions
 
