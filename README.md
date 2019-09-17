@@ -1,4 +1,4 @@
-### Zindi FarmPin Crop Detection Challenge 2019
+### Zindi FarmPin Crop Detection Challenge
 
 ---
 
